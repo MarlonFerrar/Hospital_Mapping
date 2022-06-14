@@ -1,0 +1,17 @@
+Var data_inicio = Max(aux_periodo[Inicio do Periodo])
+Var data_fim = Max(aux_periodo[Fim do Periodo])
+Var comparativo = MAX(aux_periodo[Edate_Comparacao])
+Var data_inicio_anterior = EDATE(data_inicio,comparativo)
+Var data_fim_anterior = EDATE(data_fim,comparativo)
+
+Var Demanda = 
+CALCULATE(
+    [P6_Metrica_Selecionada],
+    FILTER(
+        ALL(azbrain_ddd_peri_mv),
+        azbrain_ddd_peri_mv[data]>=data_inicio_anterior&&
+        azbrain_ddd_peri_mv[data]<=data_fim_anterior)
+    
+)
+Return
+Demanda
