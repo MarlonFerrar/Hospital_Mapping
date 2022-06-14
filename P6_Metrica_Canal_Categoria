@@ -1,0 +1,17 @@
+Var _Unidades = 
+CALCULATE(
+    DISTINCTCOUNT(fct_azbrain_hospmap_outlet_tb[cd_pdv]),
+    fct_azbrain_hospmap_outlet_tb[nr_categoria_unidades]
+)
+Var _doses = 
+CALCULATE(    
+    DISTINCTCOUNT(fct_azbrain_hospmap_outlet_tb[cd_pdv]),
+    fct_azbrain_hospmap_outlet_tb[nr_categoria_doses]
+)
+Return
+SWITCH(
+    TRUE(),
+    SELECTEDVALUE(aux_metrica[id_metrica]) = 1 , _Unidades,
+    SELECTEDVALUE(aux_metrica[id_metrica]) = 2 , _doses
+    
+)
