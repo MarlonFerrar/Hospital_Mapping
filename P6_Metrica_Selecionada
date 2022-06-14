@@ -1,0 +1,18 @@
+Var _Unidades = 
+CALCULATE(
+    SUM(fct_azbrain_hospmap_outlet_tb[unidades]),
+    fct_azbrain_hospmap_outlet_tb[nr_categoria_unidades]
+)
+
+Var _doses = 
+CALCULATE(    
+    SUM(fct_azbrain_hospmap_outlet_tb[doses]),
+    fct_azbrain_hospmap_outlet_tb[nr_categoria_doses]
+)
+
+Return
+SWITCH(
+    TRUE(),
+    SELECTEDVALUE(aux_metrica[id_metrica]) = 1 , _Unidades,
+    SELECTEDVALUE(aux_metrica[id_metrica]) = 2 , _doses
+)
